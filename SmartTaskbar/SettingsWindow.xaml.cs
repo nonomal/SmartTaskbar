@@ -30,6 +30,7 @@ namespace SmartTaskbar
                 Hide();
                 e.Cancel = true;
             };
+            
         }
 
         public void SwitchWindow()
@@ -39,5 +40,7 @@ namespace SmartTaskbar
             else
                 Show();
         }
+
+        private void MetroWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e) => DragMove();
     }
 }
