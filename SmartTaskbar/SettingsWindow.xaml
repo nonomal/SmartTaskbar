@@ -9,14 +9,61 @@
         Title="SmartTaskbar" Height="460" Width="800" WindowStartupLocation="CenterScreen" 
         Topmost="True" ResizeMode="NoResize" ShowTitleBar="False">
     <Grid>
-        <TabControl Margin="4,4,10,10"
+        <TabControl Margin="5"
             Controls:TabControlHelper.Underlined="SelectedTabItem"
             TabStripPlacement="Top">
             <Controls:MetroTabItem Controls:ControlsHelper.HeaderFontSize="18" Header="一般设置">
-                <TextBlock FontSize="30" Text="Content" />
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="5">
+                        <TextBlock FontSize="16" Text="任务栏状态" Margin="0,0,0,10"/>
+                        <RadioButton Content="智能" GroupName="1" Margin="5" FontSize="14"/>
+                        <RadioButton Content="显示" GroupName="1" Margin="5" FontSize="14"/>
+                        <RadioButton Content="隐藏" GroupName="1" Margin="5" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Margin="5">
+                        <TextBlock FontSize="16" Text="任务栏设置" Margin="0,0,0,10"/>
+                        <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" Margin="5" FontSize="14" OffLabel="禁用任务栏动画" OnLabel="禁用任务栏动画"/>
+                        <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" Margin="5" FontSize="14" OffLabel="使用小任务栏按钮" OnLabel="使用小任务栏按钮"/>
+
+                        <Button Width="100" Style="{DynamicResource SquareButtonStyle}" Content="更多设置" HorizontalAlignment="Left" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Margin="5">
+                        <TextBlock FontSize="16" Text="热键" Margin="0,0,0,10"/>
+                        <Controls:HotKeyBox AreModifierKeysRequired="True"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock FontSize="16" Text="语言:" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                        <ComboBox Width="150" Margin="0,0,20,0"
+                          Controls:TextBoxHelper.ClearTextButton="False"
+                          Controls:TextBoxHelper.Watermark="Please select an item..."
+                          SelectedIndex="0">
+                            <ComboBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Test" />
+                                </ContextMenu>
+                            </ComboBox.ContextMenu>
+                            <ComboBoxItem Content="Item 1" />
+                            <ComboBoxItem Content="Item 2" />
+                            <ComboBoxItem Content="Very long Item 3 for MahApps.Metro" />
+                            <ComboBoxItem Content="Item 4" />
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
             </Controls:MetroTabItem>
             <Controls:MetroTabItem Controls:ControlsHelper.HeaderFontSize="18" Header="自动模式">
-                <TextBlock FontSize="30" Text="More content" />
+                <Grid>
+                    <TextBlock FontSize="30" Text="More content" />
+
+                </Grid>
             </Controls:MetroTabItem>
         </TabControl>
     </Grid>

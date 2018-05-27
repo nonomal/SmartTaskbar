@@ -37,13 +37,6 @@ namespace SmartTaskbar.Infrastructure.Switcher
         [DllImport("SmartTaskbar.Core.dll")]
         public static extern bool SetuwpPID(out int uwpPID);
 
-        [DllImport("SmartTaskbar.Core.dll")]
-        public static extern bool IsWindowMax(IntPtr maxWindow, ref WINDOWPLACEMENT placement);
-
-        [DllImport("SmartTaskbar.Core.dll")]
-        public static extern bool IsWindowNotMax(IntPtr hwnd, ref WINDOWPLACEMENT placement);
-
-
         #endregion
 
         [StructLayout(LayoutKind.Sequential)]
@@ -93,37 +86,6 @@ namespace SmartTaskbar.Infrastructure.Switcher
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct WINDOWPLACEMENT
-        {
-
-            public static WINDOWPLACEMENT New()
-            {
-                return new WINDOWPLACEMENT
-                {
-                    length = (uint)Marshal.SizeOf(typeof(WINDOWPLACEMENT))
-                };
-            }
-
-            /// UINT->unsigned int
-            public uint length;
-
-            /// UINT->unsigned int
-            public uint flags;
-
-            /// UINT->unsigned int
-            public uint showCmd;
-
-            /// POINT->tagPOINT
-            public POINT ptMinPosition;
-
-            /// POINT->tagPOINT
-            public POINT ptMaxPosition;
-
-            /// RECT->tagRECT
-            public TagRECT rcNormalPosition;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
         public struct POINT
         {
 
@@ -154,7 +116,49 @@ namespace SmartTaskbar.Infrastructure.Switcher
         #region GetWindowThreadProcessId
 
         [DllImport("user32.dll")]
-        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int  lpdwProcessId);
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+
+        #endregion
+
+        #region GetWindowPlacement
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+
+        public const uint SW_MAXIMIZE = 3;
+
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPLACEMENT
+        {
+
+            public static WINDOWPLACEMENT New()
+            {
+                return new WINDOWPLACEMENT
+                {
+                    length = (uint)Marshal.SizeOf(typeof(WINDOWPLACEMENT))
+                };
+            }
+
+            /// UINT->unsigned int
+            public uint length;
+
+            /// UINT->unsigned int
+            public uint flags;
+
+            /// UINT->unsigned int
+            public uint showCmd;
+
+            /// POINT->tagPOINT
+            public POINT ptMinPosition;
+
+            /// POINT->tagPOINT
+            public POINT ptMaxPosition;
+
+            /// RECT->tagRECT
+            public TagRECT rcNormalPosition;
+        }
+
 
         #endregion
     }

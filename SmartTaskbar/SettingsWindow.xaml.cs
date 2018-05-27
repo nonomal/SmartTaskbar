@@ -35,19 +35,9 @@ namespace SmartTaskbar
         public void SwitchWindow()
         {
             if (IsVisible)
-            {
                 Hide();
-            }
             else
-            {
                 Show();
-            }
         }
-
-        public void ShowWindow() => Show();
-
-        public void HideWindow() => Hide();
-
-
     }
 }

@@ -40,12 +40,6 @@ extern "C" {
             return FALSE;
         }
     }
-    inline __declspec(dllexport) BOOL IsWindowNotMax(HWND hwnd, PWINDOWPLACEMENT placement) {
-        GetWindowPlacement(hwnd, placement);
-        if (placement->showCmd != SW_MAXIMIZE)
-            return TRUE;
-        return FALSE;
-    }
 
     inline __declspec(dllexport) BOOL SetuwpPID(PDWORD uwpPID) {
         //https://stackoverflow.com/questions/865152/how-can-i-get-a-process-handle-by-its-name-in-c
@@ -60,16 +54,6 @@ extern "C" {
                     return TRUE;
                 }
         CloseHandle(snapshot);
-        return FALSE;
-    }
-
-    inline __declspec(dllexport) BOOL IsWindowMax(HWND maxWindow, PWINDOWPLACEMENT placement) {
-        Sleep(500);
-        if (IsWindowVisible(maxWindow) == FALSE)
-            return FALSE;
-        GetWindowPlacement(maxWindow, placement);
-        if (placement->showCmd == SW_MAXIMIZE)
-            return TRUE;
         return FALSE;
     }
 

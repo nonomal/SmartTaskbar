@@ -22,7 +22,8 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoMode
                 {
                     if (!IsWindowVisible(h))
                         return true;
-                    if (IsWindowNotMax(h, ref placement))
+                    GetWindowPlacement(h, ref placement);
+                    if (placement.showCmd != SW_MAXIMIZE)
                         return true;
                     maxWindow = h;
                     return false;
@@ -40,7 +41,13 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoMode
                     continue;
                 }
                 HideTaskbar(ref msgData);
-                while(IsWindowMax(maxWindow, ref placement));
+                do
+                {
+                    Thread.Sleep(500);
+                    if (!IsWindowVisible(maxWindow))
+                        break;
+                    GetWindowPlacement(maxWindow, ref placement);
+                } while (placement.showCmd == SW_MAXIMIZE);
                 tryShowBar = true;
                 maxWindow = IntPtr.Zero;
             }
