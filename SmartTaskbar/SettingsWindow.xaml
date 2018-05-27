@@ -6,7 +6,7 @@
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:SmartTaskbar"
         mc:Ignorable="d"
-        Title="SmartTaskbar" Height="460" Width="800" WindowStartupLocation="CenterScreen" 
+        Title="SmartTaskbar" Height="390" Width="690" WindowStartupLocation="CenterScreen" 
         Topmost="True" ResizeMode="NoResize" ShowTitleBar="False">
     <Grid>
         <TabControl Margin="5"
@@ -33,8 +33,25 @@
                         <TextBlock FontSize="16" Text="任务栏设置" Margin="0,0,0,10"/>
                         <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" Margin="5" FontSize="14" OffLabel="禁用任务栏动画" OnLabel="禁用任务栏动画"/>
                         <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" Margin="5" FontSize="14" OffLabel="使用小任务栏按钮" OnLabel="使用小任务栏按钮"/>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock FontSize="14" Text="任务栏位置:" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <ComboBox Width="80"
+                          Controls:TextBoxHelper.ClearTextButton="False"
+                          Controls:TextBoxHelper.Watermark="Please select an item..."
+                          SelectedIndex="0">
+                                <ComboBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Test" />
+                                    </ContextMenu>
+                                </ComboBox.ContextMenu>
+                                <ComboBoxItem Content="Item 1" />
+                                <ComboBoxItem Content="Item 2" />
+                                <ComboBoxItem Content="Very long Item 3 for MahApps.Metro" />
+                                <ComboBoxItem Content="Item 4" />
+                            </ComboBox>
+                        </StackPanel>
 
-                        <Button Width="100" Style="{DynamicResource SquareButtonStyle}" Content="更多设置" HorizontalAlignment="Left" Margin="5"/>
+                        <Button Width="100" Style="{DynamicResource SquareButtonStyle}" Content="更多设置" HorizontalAlignment="Left" Margin="5,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2" Margin="5">
                         <TextBlock FontSize="16" Text="热键" Margin="0,0,0,10"/>
