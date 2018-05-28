@@ -11,8 +11,8 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoModeWin10
             autothread = new Thread(AutoMode);
         }
 
-        private int windowPID;
-        private int uwpPID;
+        //private int windowPID;
+        //private int uwpPID;
 
         private void AutoMode()
         {
@@ -28,8 +28,10 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoModeWin10
                     GetWindowPlacement(h, ref placement);
                     if (placement.showCmd != SW_MAXIMIZE)
                         return true;
-                    GetWindowThreadProcessId(h, out windowPID);
-                    if (uwpPID == windowPID)
+                    //GetWindowThreadProcessId(h, out windowPID);
+                    //if (uwpPID == windowPID)
+                    //    return true;
+                    if (IsInvisibleWin10(h))
                         return true;
                     maxWindow = h;
                     return false;
@@ -46,12 +48,12 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoModeWin10
                     Thread.Sleep(500);
                     continue;
                 }
-                if (uwpPID == 0)
-                    if (SetuwpPID(out uwpPID))
-                    {
-                        maxWindow = IntPtr.Zero;
-                        continue;
-                    }
+                //if (uwpPID == 0)
+                //    if (SetuwpPID(out uwpPID))
+                //    {
+                //        maxWindow = IntPtr.Zero;
+                //        continue;
+                //    }
                 HideTaskbar(ref msgData);
                 do
                 {

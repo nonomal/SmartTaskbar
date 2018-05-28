@@ -40,22 +40,28 @@ extern "C" {
             return FALSE;
         }
     }
-
-    inline __declspec(dllexport) BOOL SetuwpPID(PDWORD uwpPID) {
-        //https://stackoverflow.com/questions/865152/how-can-i-get-a-process-handle-by-its-name-in-c
-        PROCESSENTRY32 entry;
-        entry.dwSize = sizeof(PROCESSENTRY32);
-        HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
-        if (Process32First(snapshot, &entry) == TRUE)
-            while (Process32Next(snapshot, &entry) == TRUE)
-                if (_tcsicmp(entry.szExeFile, TEXT("ApplicationFrameHost.exe")) == 0) {
-                    *uwpPID = entry.th32ProcessID;
-                    CloseHandle(snapshot);
-                    return TRUE;
-                }
-        CloseHandle(snapshot);
-        return FALSE;
+    //https://stackoverflow.com/questions/32149880/how-to-identify-windows-10-background-store-processes-that-have-non-displayed-wi
+    inline __declspec(dllexport) BOOL IsInvisibleWin10(HWND hWnd) {
+        BOOL CloakedVal = FALSE;
+        DwmGetWindowAttribute(hWnd, DWMWA_CLOAKED, &CloakedVal, sizeof(CloakedVal));
+        return CloakedVal;
     }
+
+    //inline __declspec(dllexport) BOOL SetuwpPID(PDWORD uwpPID) {
+    //    //https://stackoverflow.com/questions/865152/how-can-i-get-a-process-handle-by-its-name-in-c
+    //    PROCESSENTRY32 entry;
+    //    entry.dwSize = sizeof(PROCESSENTRY32);
+    //    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    //    if (Process32First(snapshot, &entry) == TRUE)
+    //        while (Process32Next(snapshot, &entry) == TRUE)
+    //            if (_tcsicmp(entry.szExeFile, TEXT("ApplicationFrameHost.exe")) == 0) {
+    //                *uwpPID = entry.th32ProcessID;
+    //                CloseHandle(snapshot);
+    //                return TRUE;
+    //            }
+    //    CloseHandle(snapshot);
+    //    return FALSE;
+    //}
 
 }
 
