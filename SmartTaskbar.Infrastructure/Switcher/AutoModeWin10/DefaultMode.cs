@@ -49,8 +49,6 @@ namespace SmartTaskbar.Infrastructure.Switcher.AutoModeWin10
                 do
                 {
                     Thread.Sleep(500);
-                    if (!IsWindowVisible(maxWindow))
-                        break;
                     if (IsInvisibleWin10(maxWindow))
                         break;
                     GetWindowPlacement(maxWindow, ref placement);

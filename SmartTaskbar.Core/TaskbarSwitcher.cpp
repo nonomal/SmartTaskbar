@@ -42,7 +42,7 @@ extern "C" {
     }
     //https://stackoverflow.com/questions/32149880/how-to-identify-windows-10-background-store-processes-that-have-non-displayed-wi
     inline __declspec(dllexport) BOOL IsInvisibleWin10(HWND hWnd) {
-        BOOL CloakedVal = FALSE;
+        BOOL CloakedVal = TRUE;
         DwmGetWindowAttribute(hWnd, DWMWA_CLOAKED, &CloakedVal, sizeof(CloakedVal));
         return CloakedVal;
     }
