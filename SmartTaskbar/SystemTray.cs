@@ -22,7 +22,7 @@ namespace SmartTaskbar
                 Text = CultureInstance.GetString(nameof(menu_about)),
                 Font = font
             };
-            menu_about.Click += (s, e) => FormAbout.FormInstance.SwitchWindow();
+            menu_about.Click += (s, e) => System.Diagnostics.Process.Start(@"https://github.com/ChanpleCai/SmartTaskbar/releases");
             menu_settings = new ToolStripMenuItem
             {
                 Text = CultureInstance.GetString(nameof(menu_settings)),
@@ -76,7 +76,7 @@ namespace SmartTaskbar
             menu_exit.Click += (s, e) =>
             {
                 notify.Dispose();
-                SwitcherInstance.CloseSwitcher();
+                //SwitcherInstance.CloseSwitcher();
                 System.Windows.Application.Current.Shutdown();
             };
 
