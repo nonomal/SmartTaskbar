@@ -9,8 +9,6 @@ extern "C" {
 
     __declspec(dllexport) BOOL IsCursorOverTaskbar(PPOINT cursor, PAPPBARDATA msgData);
 
-    /*__declspec(dllexport) BOOL SetuwpPID(PDWORD uwpPID);*/
-
     __declspec(dllexport) BOOL IsInvisibleWin10(HWND hWnd);
 }
 

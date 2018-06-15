@@ -34,9 +34,6 @@ namespace SmartTaskbar.Infrastructure.Switcher
         [DllImport("SmartTaskbar.Core.dll")]
         public static extern bool IsCursorOverTaskbar(ref POINT cursor, ref APPBARDATA msgData);
 
-        //[DllImport("SmartTaskbar.Core.dll")]
-        //public static extern bool SetuwpPID(out int uwpPID);
-
         [DllImport("SmartTaskbar.Core.dll")]
         public static extern bool IsInvisibleWin10(IntPtr hWnd);
 
